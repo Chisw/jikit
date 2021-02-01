@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# open ~/.bash_profile || .zsh
+# export PATH=/Users/Chisw/WSJ/jikit:$PATH
+# source ~/.bash_profile || .zsh
+
+# .zshrc
+# if [ -f ~/.bash_profile ]; then
+#   . ~/.bash_profile
+# fi
+
+if [ ! $1 ]
+then
+  echo "JK-ERR: Empty command
+  c: [snippet s-name]  copy code snippet
+  l: [dir name]        list filenames to txt
+  o: [site s-name]     open a site
+  r: [app s-name]      run an app
+  s: [proj s-name]     start a project"
+  exit
+fi
+
+if [ $1 = 'c' ]
+then
+  if [ ! $2 ]
+  then
+    echo 'JK-ERR: Empty snippet name'
+  else
+    file="/Users/Chisw/WSJ/jikit/src/copy/$2"
+    if [ -f $file ]
+    then
+      pbcopy < $file
+      echo "JK-RES: Snippet '$2' copied"
+    else
+      files=/Users/Chisw/WSJ/jikit/src/copy/*
+      echo "JK-ERR: Snippet '$2' is not exist"
+      for file in $files
+      do
+        echo "  $(basename $file)"
+      done
+    fi
+  fi
+elif [ $1 = 'o' ]
+then
+  open https://baidu.com
+elif [ $1 = 'l' ]
+then
+  stamp=`date +%s`
+  targetTxtFile="/Users/chisw/Desktop/list-$stamp.txt"
+  touch $targetTxtFile
+
+  currentFiles="./*"
+  settedFiles="$2/*"
+  targetFiles=$settedFiles
+
+  if [ ! $2 ]
+  then
+    targetFiles=$currentFiles
+  fi
+
+  for file in $targetFiles
+  do
+    echo $(basename $file) >> $targetTxtFile
+  done
+  echo "JK-RES: List finished"
+else
+  echo "JK-ERR: Command '$1' is not exist"
+fi
+

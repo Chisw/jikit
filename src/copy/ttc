@@ -1,0 +1,16 @@
+;(function(){
+  window.scrollTo({ top: 0 })
+  fetchTimer = null
+  scrolls = []
+  let index = 0
+  fetchTimer = setInterval(() => {
+    document.querySelectorAll(`[data-testid="unlike"]`).forEach(b => b.click())
+    index++
+    window.scrollTo({ top: index * 1000, behavior: 'smooth' })
+    scrolls.unshift(document.documentElement.scrollTop)
+    if (scrolls.slice(0, 3).join('') === String(scrolls[0]).repeat(3)) {
+      clearInterval(fetchTimer)
+      location.reload()
+    }
+  }, 800)
+}());

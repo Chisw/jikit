@@ -1,0 +1,33 @@
+(file, index, lodash, DateTime) => {
+  const {
+    name,
+    size,
+    type,
+    lastModified,
+    lastModifiedDate,
+    webkitRelativePath = '',
+  } = file
+  const getBaseNumber = (id) => Array.from(id.substring(0, 7)).map(n => parseInt(n, 36)).reduce((a, b) => a + b) % 10 + 10
+  const getZoneId = () => Math.random().toString(36).substring(3, 10)
+  const getFileNumber = (fileName) => {
+    const ext = fileName.slice(fileName.lastIndexOf('.') + 1).toLowerCase()
+    if (['jpg', 'jpeg'].includes(ext)) {
+      return 1
+    } else if (ext === 'gif') {
+      return 2
+    } else if (ext === 'mp4') {
+      return 3
+    } else {
+      return 0
+    }
+  }
+  const getKeyByFileName = (fileName) => {
+    const id = getZoneId()
+    const baseNumber = getBaseNumber(id)
+    const fileNumber = getFileNumber(fileName)
+    const suffix = (baseNumber + fileNumber).toString(36)
+    return `${id}${suffix}`
+  }
+
+  return getKeyByFileName(name)
+}
