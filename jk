@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# open ~/.bash_profile || .zsh
-# export PATH=/Users/Chisw/WSJ/jikit:$PATH
-# source ~/.bash_profile || .zsh
-
-# .zshrc
-# if [ -f ~/.bash_profile ]; then
-#   . ~/.bash_profile
-# fi
-
 if [ ! $1 ]
 then
   echo "JK-ERR: Empty command
