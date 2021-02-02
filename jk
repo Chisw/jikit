@@ -3,15 +3,16 @@
 if [ ! $1 ]
 then
   echo "JK-ERR: Empty command
-  c: [snippet s-name]  copy code snippet
-  l: [dir name]        list filenames to txt
-  o: [site s-name]     open a site
-  r: [app s-name]      run an app
-  s: [proj s-name]     start a project"
+  cp: [snippet s-name]  copy code snippet
+  ls: [dir name]        list filenames to txt
+  op: [site s-name]     open a site
+  rm: [filenames-list.txt]
+  run: [app s-name]      run an app
+  start: [proj s-name]     start a project"
   exit
 fi
 
-if [ $1 = 'c' ]
+if [ $1 = 'cp' ]
 then
   if [ ! $2 ]
   then
@@ -31,10 +32,10 @@ then
       done
     fi
   fi
-elif [ $1 = 'o' ]
+elif [ $1 = 'op' ]
 then
   open https://baidu.com
-elif [ $1 = 'l' ]
+elif [ $1 = 'ls' ]
 then
   stamp=`date +%s`
   targetTxtFile="/Users/chisw/Desktop/list-$stamp.txt"
@@ -54,6 +55,14 @@ then
     echo $(basename $file) >> $targetTxtFile
   done
   echo "JK-RES: List finished"
+elif [ $1 = 'rm' ]
+then
+  list=`cat $2`
+  for file in $list
+  do
+    rm $file
+  done
+  exit
 else
   echo "JK-ERR: Command '$1' is not exist"
 fi
