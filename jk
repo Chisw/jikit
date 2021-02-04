@@ -6,7 +6,7 @@ then
   cp: [snippet s-name]  copy code snippet
   ls: [dir name]        list filenames to txt
   op: [site s-name]     open a site
-  rm: [filenames-list.txt]
+  rm: [jk-rm.txt]
   run: [app s-name]      run an app
   start: [proj s-name]     start a project"
   exit
@@ -57,10 +57,16 @@ then
   echo "JK-RES: List finished"
 elif [ $1 = 'rm' ]
 then
-  list=`cat $2`
+  list=`cat /users/chisw/desktop/jk-rm.txt`
   for file in $list
   do
-    rm $file
+    if [ -f $file ]
+    then
+      rm $file
+      echo "$file removed"
+    else
+      echo "no such a file $file"
+    fi
   done
   exit
 else
