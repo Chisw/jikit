@@ -1,7 +1,7 @@
-## jikit
+## JIKIT
 
 
-### Basic setting
+### Basic configuration for global use
 
 - Clone repository:
 
