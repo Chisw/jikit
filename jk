@@ -2,7 +2,7 @@
 
 if [ ! $1 ]
 then
-  echo "JK-ERR: Empty command
+  echo "JIKIT: Empty command
   cp: [snippet s-name]  copy code snippet
   ls: [dir name]        list filenames to txt
   op: [site s-name]     open a site
@@ -16,16 +16,16 @@ if [ $1 = 'cp' ]
 then
   if [ ! $2 ]
   then
-    echo 'JK-ERR: Empty snippet name'
+    echo 'JIKIT: Empty snippet name'
   else
-    file="/Users/Chisw/WSJ/jikit/src/copy/$2"
+    file="/Users/$(whoami)/WSJ/jikit/src/copy/$2"
     if [ -f $file ]
     then
       pbcopy < $file
-      echo "JK-RES: Snippet '$2' copied"
+      echo "JIKIT: Snippet '$2' copied"
     else
-      files=/Users/Chisw/WSJ/jikit/src/copy/*
-      echo "JK-ERR: Snippet '$2' is not exist"
+      files="/Users/$(whoami)/WSJ/jikit/src/copy/*"
+      echo "JIKIT: Snippet '$2' is not exist"
       for file in $files
       do
         echo "  $(basename $file)"
@@ -38,7 +38,7 @@ then
 elif [ $1 = 'ls' ]
 then
   stamp=`date +%s`
-  targetTxtFile="/Users/chisw/Desktop/list-$stamp.txt"
+  targetTxtFile="/Users/$(whoami)/Desktop/jk-ls-$stamp.txt"
   touch $targetTxtFile
 
   currentFiles="./*"
@@ -54,10 +54,10 @@ then
   do
     echo $(basename $file) >> $targetTxtFile
   done
-  echo "JK-RES: List finished"
+  echo "JIKIT: Listed successfully ($targetTxtFile)"
 elif [ $1 = 'rm' ]
 then
-  list=`cat /users/chisw/desktop/jk-rm.txt`
+  list=`cat /users/$(whoami)/desktop/jk-rm.txt`
   for file in $list
   do
     if [ -f $file ]
@@ -70,6 +70,6 @@ then
   done
   exit
 else
-  echo "JK-ERR: Command '$1' is not exist"
+  echo "JIKIT: Command '$1' is not exist"
 fi
 
