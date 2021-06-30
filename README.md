@@ -1,26 +1,25 @@
-# jikit
+## jikit
 
 
-## Basic setting
+### Basic setting
 
-```
-open ~/.bash_profile
-export PATH=/Users/Chisw/WSJ/jikit:$PATH
-source ~/.bash_profile
-```
+- Clone repository:
 
-or `zsh`
-
-```
-open ~/.zsh
-export PATH=/Users/Chisw/WSJ/jikit:$PATH
-source ~/.zsh
+```sh
+git clone https://github.com/Chisw/jikit.git
 ```
 
-Append to the end of `.zshrc`
 
+- Open or create `~/.zsh`, paste the following code and save:
+
+```sh
+export PATH=/Users/USER_NAME/PROJECTS_DIR/jikit:$PATH
 ```
-if [ -f ~/.bash_profile ]; then
-  . ~/.bash_profile
+
+- Source `~/.zsh` to the end of `~/.zshrc`
+
+```sh
+if [ -f ~/.zsh ]; then
+  . ~/.zsh
 fi
 ```
