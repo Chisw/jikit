@@ -16,15 +16,16 @@ if [ $1 = 'cp' ]
 then
   if [ ! $2 ]
   then
-    echo 'JIKIT: Empty snippet name'
+    echo "JIKIT: Empty snippet name"
   else
-    file="/Users/$(whoami)/WSJ/jikit/src/copy/$2"
+    JIKIT_FOLDER=$(cd "$(dirname "$0")";pwd)
+    file="$JIKIT_FOLDER/src/copy/$2"
     if [ -f $file ]
     then
       pbcopy < $file
-      echo "JIKIT: Snippet '$2' copied"
+      echo "JIKIT: Copied successfully ($2)"
     else
-      files="/Users/$(whoami)/WSJ/jikit/src/copy/*"
+      files="$JIKIT_FOLDER/src/copy/*"
       echo "JIKIT: Snippet '$2' is not exist"
       for file in $files
       do
@@ -57,7 +58,7 @@ then
   echo "JIKIT: Listed successfully ($targetTxtFile)"
 elif [ $1 = 'rm' ]
 then
-  list=`cat /users/$(whoami)/desktop/jk-rm.txt`
+  list=`cat /users/$(whoami)/Desktop/jk-rm.txt`
   for file in $list
   do
     if [ -f $file ]
