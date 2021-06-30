@@ -1,0 +1,11 @@
+#!/bin/bash
+
+files="./*"
+
+for file in $files
+do
+  # ffmpeg -i $file -vcodec copy -acodec copy "$file-converted.mp4"
+  ffmpeg -i $file -vcodec libx264 -acodec copy "$file-converted.mp4"
+  echo -e "\033[32m JIKIT: $file OK \033[0m"
+done
+echo -e "\033[32m JIKIT: Converted successfully \033[0m"

@@ -38,18 +38,18 @@ jikit
 - commands
 - src
   - copy
-    - demofile
+    - demoFile
 ```
 
 ```sh
-jk cp demo
+jk cp demoFile
 ```
 
-The text in `demofile` will be copied into your clipboard.
+The text in `demoFile` will be copied into your clipboard.
 
 #### `jk ls`
 
-Generate names of all folders and files in current directory into a .txt file created in the Desktop.
+Generate names of all folders and files in current directory into a .txt file created on the Desktop.
 
 #### `jk mp4`
 

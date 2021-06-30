@@ -1,89 +1,36 @@
 #!/bin/bash
 
-if [ ! $1 ]
-then
-  echo -e "\033[31m JIKIT: Empty command \033[0m
-  cp:    [snippet]    Copy code snippet
-  ls:    [dir]        List filenames to txt
-  op:    [site]       Open a site
-  rm:    [jk-rm.txt]
-  run:   [app]        Run an app
-  start: [proj]       Start a project
-  mp4:   [dir]        Batch convert \033[44;37m .flv \033[0m to \033[44;37m .mp4 \033[0m"
+COMMAND=$1
+PARAM_1=$2
+PARAM_2=$3
+DIR_JIKIT=$(cd "$(dirname "$0")";pwd)
+DIR_DESKTOP=/users/$(whoami)/Desktop
+
+if [ ! $COMMAND ]; then
+  echo -e "
+\033[31m JIKIT: Empty command \033[0m
+    cp [snippet]      Copy code snippet
+    ls [dir]          List filenames to txt
+    mp4 [dir]         Batch convert any videos to .mp4
+    op [site]         Open a site
+    rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
+    run [app]         Run an app
+    start [proj]      Start a project
+"
   exit
 fi
 
-if [ $1 = 'cp' ]
-then
-  if [ ! $2 ]
-  then
-    echo -e "\033[31m JIKIT: Empty snippet name \033[0m"
-  else
-    JIKIT_FOLDER=$(cd "$(dirname "$0")";pwd)
-    file="$JIKIT_FOLDER/src/copy/$2"
-    if [ -f $file ]
-    then
-      pbcopy < $file
-      echo -e "\033[32m JIKIT: Copied successfully ($2) \033[0m"
-    else
-      files="$JIKIT_FOLDER/src/copy/*"
-      echo -e "\033[33m JIKIT: Snippet '$2' is not exist \033[0m"
-      for file in $files
-      do
-        echo "  $(basename $file)"
-      done
-    fi
-  fi
-elif [ $1 = 'op' ]
-then
-  open https://baidu.com
-elif [ $1 = 'ls' ]
-then
-  stamp=`date +%s`
-  targetTxtFile="/Users/$(whoami)/Desktop/jk-ls-$stamp.txt"
-  touch $targetTxtFile
-
-  currentFiles="./*"
-  settedFiles="$2/*"
-  targetFiles=$settedFiles
-
-  if [ ! $2 ]
-  then
-    targetFiles=$currentFiles
-  fi
-
-  for file in $targetFiles
-  do
-    echo $(basename $file) >> $targetTxtFile
-  done
-  echo -e "\033[32m JIKIT: Listed successfully ($targetTxtFile) \033[0m"
-elif [ $1 = 'rm' ]
-then
-  list=`cat /users/$(whoami)/Desktop/jk-rm.txt`
-  for file in $list
-  do
-    if [ -f $file ]
-    then
-      rm $file
-      echo "$file removed"
-    else
-      echo "no such a file $file"
-    fi
-  done
-  exit
-elif [ $1 = 'mp4' ]
-then
-  files="./*"
-
-  for file in $files
-  do
-    # ffmpeg -i $file -vcodec copy -acodec copy "$file-converted.mp4"
-    ffmpeg -i $file -vcodec libx264 -acodec copy "$file-converted.mp4"
-    echo -e "\033[32m JIKIT: $file OK \033[0m"
-  done
-  echo -e "\033[32m JIKIT: Converted successfully \033[0m"
-
+if [ $COMMAND = 'cp' ]; then
+  . "$DIR_JIKIT/commands/cp"
+elif [ $COMMAND = 'op' ]; then
+  . "$DIR_JIKIT/commands/op"
+elif [ $COMMAND = 'ls' ]; then
+  . "$DIR_JIKIT/commands/ls"
+elif [ $COMMAND = 'rm' ]; then
+  . "$DIR_JIKIT/commands/rm"
+elif [ $COMMAND = 'mp4' ]; then
+  . "$DIR_JIKIT/commands/mp4"
 else
-  echo -e "\033[33m JIKIT: Command '$1' is not exist \033[0m"
+  echo -e "\033[33m JIKIT: Command '$COMMAND' is not exist \033[0m"
 fi
 
