@@ -1,7 +1,8 @@
-## jikit
+## JIKIT
 
+A tiny shell tool
 
-### Basic setting
+### Installation
 
 - Clone repository:
 
@@ -16,10 +17,44 @@ git clone https://github.com/Chisw/jikit.git
 export PATH=/Users/USER_NAME/PROJECTS_DIR/jikit:$PATH
 ```
 
-- Source `~/.zsh` to the end of `~/.zshrc`
+- Source `~/.zsh` to the end of `~/.zshrc` for global use
 
 ```sh
 if [ -f ~/.zsh ]; then
   . ~/.zsh
 fi
+```
+
+### Commands
+
+#### `jk cp [snippet file name]`
+
+Copy a common code
+
+You have to prepare the corresponding code file in advance and store it in the folder like:
+
+```
+jikit
+- commands
+- src
+  - copy
+    - demoFile
+```
+
+```sh
+jk cp demoFile
+```
+
+The text in `demoFile` will be copied into your clipboard.
+
+#### `jk ls`
+
+Generate names of all folders and files in current directory into a .txt file created on the Desktop.
+
+#### `jk mp4`
+
+Batch convert any format of video to mp4 with `ffmpeg`, install it before use:
+
+```sh
+brew install ffmpeg
 ```

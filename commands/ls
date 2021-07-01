@@ -1,0 +1,19 @@
+#!/bin/bash
+  
+stamp=`date +%s`
+targetTxt="$DIR_DESKTOP/jk-ls-$stamp.txt"
+touch $targetTxt
+
+currentFiles="./*"
+settedFiles="$PARAM_1/*"
+targetFiles=$settedFiles
+
+if [ ! $PARAM_1 ]; then
+  targetFiles=$currentFiles
+fi
+
+for file in $targetFiles
+do
+  echo $(basename $file) >> $targetTxt
+done
+echo -e "\033[32m JIKIT: Listed successfully ($targetTxt) \033[0m"

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+files="$DIR_JIKIT/src/copy/*"
+
+if [ ! $PARAM_1 ]; then
+  echo -e "\033[31m JIKIT: Empty snippet name \033[0m"
+  for file in $files
+  do
+    echo "  $(basename $file)"
+  done
+else
+  file="$DIR_JIKIT/src/copy/$PARAM_1"
+  if [ -f $file ]; then
+    pbcopy < $file
+    echo -e "\033[32m JIKIT: Copied successfully ($PARAM_1) \033[0m"
+  else
+    echo -e "\033[33m JIKIT: Snippet '$PARAM_1' is not exist \033[0m"
+    for file in $files
+    do
+      echo "  $(basename $file)"
+    done
+  fi
+fi

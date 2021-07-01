@@ -1,0 +1,13 @@
+#!/bin/bash
+
+list=`cat $DIR_DESKTOP/jk-rm.txt`
+for file in $list
+do
+  if [ -f $file ]
+  then
+    rm $file
+    echo "$file removed"
+  else
+    echo "no such a file $file"
+  fi
+done
