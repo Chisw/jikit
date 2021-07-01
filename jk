@@ -8,29 +8,22 @@ DIR_DESKTOP=/users/$(whoami)/Desktop
 
 if [ ! $COMMAND ]; then
   echo -e "
-\033[31m JIKIT: Empty command \033[0m
-    cp [snippet]      Copy code snippet
-    ls [dir]          List filenames to txt
-    mp4 [dir]         Batch convert any videos to .mp4
-    op [site]         Open a site
-    rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
-    run [app]         Run an app
-    start [proj]      Start a project
+\033[31m JIKIT: Invalid command \033[0m
+
+    jk cp [snippet]      Copy code snippet
+    jk ls [dir]          List filenames to txt
+    jk mp4 [dir]         Batch convert any videos to .mp4
+    jk op [site]         Open a site
+    jk rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
+    jk run [app]         Run an app
+    jk start [proj]      Start a project
 "
   exit
 fi
 
-if [ $COMMAND = 'cp' ]; then
-  . "$DIR_JIKIT/commands/cp"
-elif [ $COMMAND = 'op' ]; then
-  . "$DIR_JIKIT/commands/op"
-elif [ $COMMAND = 'ls' ]; then
-  . "$DIR_JIKIT/commands/ls"
-elif [ $COMMAND = 'rm' ]; then
-  . "$DIR_JIKIT/commands/rm"
-elif [ $COMMAND = 'mp4' ]; then
-  . "$DIR_JIKIT/commands/mp4"
+commands="cp ls mp4 op rm run start"
+if [[ "${commands[@]}" =~ $COMMAND ]]; then
+  source "$DIR_JIKIT/commands/$COMMAND"
 else
   echo -e "\033[33m JIKIT: Command '$COMMAND' is not exist \033[0m"
 fi
-
