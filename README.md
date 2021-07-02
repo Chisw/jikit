@@ -36,16 +36,16 @@ You have to prepare the corresponding code file in advance and store it in the f
 ```
 jikit
 - commands
-- src
+- source
   - copy
-    - demoFile
+    - demo.txt
 ```
 
 ```sh
-jk cp demoFile
+jk cp demo.txt
 ```
 
-The text in `demoFile` will be copied into your clipboard.
+The text in `demo.txt` will be copied into your clipboard.
 
 #### `jk ls`
 

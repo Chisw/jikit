@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files="$DIR_JIKIT/src/copy/*"
+files="$DIR_JIKIT/source/copy/*"
 
 if [ ! $PARAM_1 ]; then
   echo -e "\033[31m JIKIT: Empty snippet name \033[0m"
@@ -9,7 +9,7 @@ if [ ! $PARAM_1 ]; then
     echo "  $(basename $file)"
   done
 else
-  file="$DIR_JIKIT/src/copy/$PARAM_1"
+  file="$DIR_JIKIT/source/copy/$PARAM_1"
   if [ -f $file ]; then
     pbcopy < $file
     echo -e "\033[32m JIKIT: Copied successfully ($PARAM_1) \033[0m"
