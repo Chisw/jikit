@@ -11,6 +11,7 @@ if [ ! $COMMAND ]; then
 \033[31m JIKIT: Invalid command \033[0m
 
     jk cp [snippet]      Copy code snippet
+    jk ip                Get local IP address
     jk ls [dir]          List filenames to txt
     jk mp4 [dir]         Batch convert any videos to .mp4
     jk op [site]         Open a site
@@ -21,7 +22,8 @@ if [ ! $COMMAND ]; then
   exit
 fi
 
-commands="cp ls mp4 op rm run start"
+commands="cp ip ls mp4 op rm run start"
+
 if [[ "${commands[@]}" =~ $COMMAND ]]; then
   source "$DIR_JIKIT/commands/$COMMAND"
 else
