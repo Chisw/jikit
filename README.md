@@ -47,7 +47,7 @@ jk cp demo.txt
 
 The text in `demo.txt` will be copied into your clipboard.
 
-### `jk ip`
+#### `jk ip`
 
 Get local IP address and copy it into your clipboard.
 
