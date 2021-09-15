@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $PARAM_1 = 'tree' ]]; then
+  # `brew install tree` first
+  stamp=`date +%s`
+  targetJSON="$DIR_DESKTOP/jk-use-tree-$stamp.json"
+  tree --dirsfirst --noreport -n -J -i -s -D --timefmt "%Y-%m-%d %H:%M:%S" -o $targetJSON
+else
+  echo -e "\033[33m JIKIT: Use command '$PARAM_1' is not exist \033[0m"
+fi

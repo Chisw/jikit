@@ -19,11 +19,12 @@ if [ ! $COMMAND ]; then
     jk rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
     jk run [app]         Run an app
     jk start [proj]      Start a project
+    jk use [cmd]         Use other lib
 "
   exit
 fi
 
-commands="cp ip ls lsd mp4 op rm run start"
+commands="cp ip ls lsd mp4 op rm run start use"
 
 if [[ "${commands[@]}" =~ $COMMAND ]]; then
   source "$DIR_JIKIT/commands/$COMMAND"
