@@ -13,6 +13,7 @@ if [ ! $COMMAND ]; then
     jk cp [snippet]      Copy code snippet
     jk ip                Get local IP address
     jk ls [dir]          List filenames to txt
+    jk lsd [dir]         List directories and count to txt
     jk mp4 [dir]         Batch convert any videos to .mp4
     jk op [site]         Open a site
     jk rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
@@ -22,7 +23,7 @@ if [ ! $COMMAND ]; then
   exit
 fi
 
-commands="cp ip ls mp4 op rm run start"
+commands="cp ip ls lsd mp4 op rm run start"
 
 if [[ "${commands[@]}" =~ $COMMAND ]]; then
   source "$DIR_JIKIT/commands/$COMMAND"

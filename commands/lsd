@@ -1,0 +1,28 @@
+#!/bin/bash
+  
+stamp=`date +%s`
+targetTxt="$DIR_DESKTOP/jk-lsd-$stamp.txt"
+touch $targetTxt
+
+currentDir=$(pwd)
+settedDir="$PARAM_1"
+targetDir=$settedDir
+
+if [ ! $PARAM_1 ]; then
+  targetDir=$currentDir
+fi
+
+function recursive_list_dir(){
+  for f in `ls $1`
+  do
+    if [ -d $1"/"$f ]
+    then
+      echo $1"/"$f [$(echo $(ls -l $1"/"$f | grep "^-"|wc -l))] >> $targetTxt
+      recursive_list_dir $1"/"$f
+    fi
+  done
+}
+
+recursive_list_dir $targetDir
+
+echo -e "\033[32m JIKIT: Listed successfully ($targetTxt) \033[0m"
