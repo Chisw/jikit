@@ -1,0 +1,10 @@
+#!/bin/bash
+
+files="./*"
+
+for file in $files
+do
+  ffmpeg -i "$file" -acodec libmp3lame "$file.mp3"
+  echo -e "\033[32m JIKIT: $file OK \033[0m"
+done
+echo -e "\033[32m JIKIT: Converted successfully \033[0m"

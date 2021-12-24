@@ -24,7 +24,7 @@ if [ ! $COMMAND ]; then
   exit
 fi
 
-commands="cp ip ls lsd mp4 op rm run start use"
+commands="cp ip ls lsd mp3 mp4 op rm run start use"
 
 if [[ "${commands[@]}" =~ $COMMAND ]]; then
   source "$DIR_JIKIT/commands/$COMMAND"
