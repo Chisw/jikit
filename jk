@@ -3,6 +3,7 @@
 COMMAND=$1
 PARAM_1=$2
 PARAM_2=$3
+PARAM_3=$4
 DIR_JIKIT=$(cd "$(dirname "$0")";pwd)
 DIR_DESKTOP=/users/$(whoami)/Desktop
 
