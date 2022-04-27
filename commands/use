@@ -17,7 +17,6 @@ elif [[ $PARAM_1 = 'ffmj' ]]; then
     echo "file '$(basename $file)'" >> filelist.txt
   done
   ffmpeg -f concat -i filelist.txt -c copy output.mkv
-  ffmpeg -i output.mkv output.mp4
 else
   echo -e "\033[33m JIKIT: Use command '$PARAM_1' is not exist \033[0m"
 fi
