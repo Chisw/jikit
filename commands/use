@@ -17,6 +17,8 @@ elif [[ $PARAM_1 = 'ffmj' ]]; then
     echo "file '$(basename $file)'" >> filelist.txt
   done
   ffmpeg -f concat -i filelist.txt -c copy output.mkv
+elif [[ $PARAM_1 = 'clear' ]]; then
+  find . -name .DS_Store -type f -delete && dot_clean *
 else
   echo -e "\033[33m JIKIT: Use command '$PARAM_1' is not exist \033[0m"
 fi
