@@ -11,12 +11,12 @@ elif [[ $PARAM_1 = 'bili' ]]; then
 elif [[ $PARAM_1 = 'ffmj' ]]; then
   # `brew install ffmpeg`
 
-  # touch filelist.txt
-  # files='./*.mp4'
-  # for file in $files
-  # do
-  #   echo "file '$(basename $file)'" >> filelist.txt
-  # done
+  touch filelist.txt
+  files='./*.mp4'
+  for file in $files
+  do
+    echo "file '$(basename $file)'" >> filelist.txt
+  done
 
   ffmpeg -f concat -i filelist.txt -c copy output.mkv
 elif [[ $PARAM_1 = 'clear' ]]; then
