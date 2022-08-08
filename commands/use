@@ -8,17 +8,6 @@ if [[ $PARAM_1 = 'tree' ]]; then
 elif [[ $PARAM_1 = 'bili' ]]; then
   # `brew install you-get`
   cd ~/Downloads && mkdir $PARAM_2 && cd $PARAM_2 && you-get --playlist $PARAM_3
-elif [[ $PARAM_1 = 'ffmj' ]]; then
-  # `brew install ffmpeg`
-
-  touch filelist.txt
-  files='./*.mp4'
-  for file in $files
-  do
-    echo "file '$(basename $file)'" >> filelist.txt
-  done
-
-  ffmpeg -f concat -i filelist.txt -c copy output.mkv
 elif [[ $PARAM_1 = 'clear' ]]; then
   find . -name .DS_Store -type f -delete && dot_clean *
 else
