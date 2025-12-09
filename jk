@@ -15,11 +15,9 @@ if [ ! $COMMAND ]; then
     jk ip                Get local IP address
     jk ls [dir]          List filenames to txt
     jk lsd [dir]         List directories and count to txt
+    jk mp3 [dir]         Batch convert any audios to .mp3
     jk mp4 [dir]         Batch convert any videos to .mp4
     jk op [site]         Open a site
-    jk rm [jk-rm.txt]    Remove all files listed in the jk-rm.txt
-    jk run [app]         Run an app
-    jk start [proj]      Start a project
     jk use [cmd]         Use other lib
 "
   exit
